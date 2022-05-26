@@ -5,7 +5,7 @@ export default function Navbar() {
   const username = null;
 
   return (
-    <nav className="rounded-b-lg bg-white p-4 shadow-sm shadow-neutral-500">
+    <nav className="rounded-b-lg bg-white p-4 shadow-sm shadow-neutral-400">
       <ul className="mx-32 flex items-center justify-between">
         <li>
           <Link href="/">
