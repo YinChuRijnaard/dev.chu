@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import Loader from "../components/Loader";
 
 export default function Home() {
   return (
     <div>
-      <h1>Home</h1>
-      <Loader show={false} />
+      <button onClick={() => toast.success("Hello!")}>Toast me</button>
     </div>
   );
 }
