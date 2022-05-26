@@ -1,0 +1,12 @@
+{
+  "bracketSameLine": true,
+  "singleQuote": false,
+  "printWidth": 120,
+  "useTabs": false,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "semi": true,
+  "plugins": [],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
