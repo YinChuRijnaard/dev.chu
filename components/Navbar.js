@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "../lib/context";
 
 export default function Navbar() {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
 
   return (
     <nav className="rounded-b-lg bg-white p-4 shadow-sm shadow-neutral-400">
@@ -17,18 +18,20 @@ export default function Navbar() {
 
         {/* User is signed-in and has username */}
         {username && (
-          <>
+          <div className="flex items-center justify-end space-x-8">
             <li>
               <Link href="/admin">
-                <button>Write Posts</button>
+                <button className="rounded-md bg-blue-700 py-2 px-4 text-lg font-bold text-white hover:underline hover:decoration-amber-500">
+                  Write Posts
+                </button>
               </Link>
             </li>
             <li>
               <Link href={`/${username}`}>
-                <img src={user?.photoURL} />
+                <img className="h-12 w-12 cursor-pointer" src={user?.photoURL || "/hacker.png"} />
               </Link>
             </li>
-          </>
+          </div>
         )}
 
         {/* User is not signed-in OR has not created a username */}

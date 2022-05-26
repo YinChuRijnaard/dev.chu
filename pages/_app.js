@@ -1,15 +1,16 @@
 import { Toaster } from "react-hot-toast";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css"; // This import was needed too
+import { UserContext } from "../lib/context";
 import Navbar from "../components/Navbar";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <UserContext.Provider value={{ user: {}, username: "Yin Chu" }}>
       <Navbar />
       <Component {...pageProps} />
       <Toaster />
-    </>
+    </UserContext.Provider>
   );
 }
 

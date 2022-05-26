@@ -4,9 +4,5 @@ import toast from "react-hot-toast";
 import Loader from "../components/Loader";
 
 export default function Home() {
-  return (
-    <div>
-      <button onClick={() => toast.success("Hello!")}>Toast me</button>
-    </div>
-  );
+  return <div>{/* <button onClick={() => toast.success("Hello!")}>Toast me</button> */}</div>;
 }

@@ -1,8 +1,9 @@
 import { auth, googleAuthProvider } from "../lib/firebase";
+import { useContext } from "react";
+import { UserContext } from "../lib/context";
 
 export default function Enter(props) {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
 
   // 1. User signed out, <SignInButton />
   // 2. User signed in but no username, <UsernameForm />
@@ -31,7 +32,15 @@ function SignInButton() {
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign out</button>;
+  return (
+    <div className="mx-32 mt-8 p-4">
+      <button
+        className="flex items-center justify-around rounded-md bg-white py-2 px-4 font-bold hover:underline hover:decoration-amber-500"
+        onClick={() => auth.signOut()}>
+        Sign out
+      </button>
+    </div>
+  );
 }
 
 function UsernameForm() {
