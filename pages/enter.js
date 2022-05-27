@@ -19,12 +19,17 @@ function SignInButton() {
   };
 
   return (
-    <div className="mx-32 mt-8 p-4">
+    <div className="mx-32 mt-8 space-y-4 p-4">
       <button
-        className="flex items-center justify-around rounded-md bg-white py-2 px-4 font-bold hover:underline hover:decoration-amber-500"
+        className="flex items-center justify-around rounded-md bg-neutral-900 py-2 px-4 font-bold text-white hover:bg-neutral-800"
         onClick={signInWithGoogle}>
         <img className="mr-4 h-8 w-8" src={"./google.png"} />
         Sign in with Google
+      </button>
+      <button
+        className="flex items-center justify-around rounded-md bg-neutral-900 py-2 px-4 font-bold text-white hover:bg-neutral-800"
+        onClick={() => auth.signInAnonymously()}>
+        Sign in Anonymously
       </button>
     </div>
   );
@@ -35,7 +40,7 @@ function SignOutButton() {
   return (
     <div className="mx-32 mt-8 p-4">
       <button
-        className="flex items-center justify-around rounded-md bg-white py-2 px-4 font-bold hover:underline hover:decoration-amber-500"
+        className="flex items-center justify-around rounded-md bg-white py-2 px-4 font-bold text-red-500"
         onClick={() => auth.signOut()}>
         Sign out
       </button>
