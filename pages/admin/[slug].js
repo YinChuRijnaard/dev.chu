@@ -62,7 +62,9 @@ function PostManager() {
 }
 
 function PostForm({ defaultValues, postRef, preview }) {
-  const { register, handleSubmit, reset, watch } = useForm({ defaultValues, mode: "onChange" });
+  const { register, handleSubmit, reset, watch, formState } = useForm({ defaultValues, mode: "onChange" });
+
+  const { isValid, isDirty, errors } = formState; // Error fixed with: https://github.com/react-hook-form/react-hook-form/discussions/4708
 
   const updatePost = async ({ content, published }) => {
     await postRef.update({
@@ -86,16 +88,27 @@ function PostForm({ defaultValues, postRef, preview }) {
 
       {/* className={preview ? styles.hidden : styles.controls} */}
       <div className={preview ? styles.hidden : styles.controls}>
-        <textarea className="mt-4" name="content" {...register("content")}></textarea>
+        <textarea
+          className="mt-4"
+          name="content"
+          {...register("content", {
+            maxLength: { value: 20000, message: "content is too long" },
+            minLength: { value: 10, message: "content is too short" },
+            required: { value: true, message: "Content is required" },
+          })}></textarea>
+
+        {errors.content && <p className="font-bold text-red-500">{errors.content.message}</p>}
 
         <fieldset className="mt-4">
-          <input className="mr-2" name="published" type="checkbox" {...register("published")} />
+          <input className="mr-2" name="published" type="checkbox" {...register("published")} />{" "}
+          {/* Error fixed with: https://stackoverflow.com/questions/66927051/getting-uncaught-typeerror-path-split-is-not-a-function-in-react */}
           <label>Published</label>
         </fieldset>
 
         <button
           className="md mt-4 mb-16 rounded bg-green-500 px-4 py-2 font-bold text-white disabled:bg-green-600"
           type="submit">
+          disabled={!isDirty || !isValid}
           Save changes
         </button>
       </div>
