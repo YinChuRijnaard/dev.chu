@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 // @ts-ignore
 import styles from "../../styles/Admin.module.css";
 import { auth, firestore, serverTimestamp } from "../../lib/firebase";
+import ImageUploader from "../../components/ImageUploader";
 import AuthCheck from "../../components/AuthCheck";
 
 export default function AdminPostEdit(props) {
@@ -85,6 +86,8 @@ function PostForm({ defaultValues, postRef, preview }) {
           <ReactMarkdown>{watch("content")}</ReactMarkdown>
         </div>
       )}
+
+      <ImageUploader />
 
       {/* className={preview ? styles.hidden : styles.controls} */}
       <div className={preview ? styles.hidden : styles.controls}>
