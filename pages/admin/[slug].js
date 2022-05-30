@@ -32,30 +32,25 @@ function PostManager() {
 
   return (
     <>
-      <main className="items center mx-32 mt-8 flex justify-between">
+      <main className="items center mx-32 mb-32 mt-8 flex justify-between">
         {post && (
-          <>
-            <section className="w-3/4 space-y-4">
-              <h1 className="text-4xl font-bold">{post.title}</h1>
-              <p>ID: {post.slug}</p>
-
-              <PostForm postRef={postRef} defaultValues={post} preview={preview} />
-            </section>
-
-            <aside className="flex flex-col items-center space-y-4">
-              <h3 className="font-bold">Tools</h3>
+          <div className="w-full space-y-4">
+            <h1 className="text-4xl font-bold">{post.title}</h1>
+            <p>ID: {post.slug}</p>
+            <PostForm postRef={postRef} defaultValues={post} preview={preview} />
+            <span className="flex w-full items-center justify-between space-x-32">
               <button
-                className="flex items-center rounded-md border-2 border-neutral-500 py-2 px-4 font-bold hover:border-neutral-900"
+                className="flex w-full items-center justify-center rounded-md border-2 border-neutral-500 py-2 px-4 font-bold hover:border-neutral-900"
                 onClick={() => setPreview(!preview)}>
                 {preview ? "Edit" : "Preview"}
               </button>
               <Link href={`/${post.username}/${post.slug}`}>
-                <button className="flex items-center rounded-md border-2 border-neutral-500 py-2 px-4 font-bold hover:border-neutral-900">
+                <button className="flex w-full items-center justify-center rounded-md border-2 border-neutral-500 py-2 px-4 font-bold hover:border-neutral-900">
                   Live view
                 </button>
               </Link>
-            </aside>
-          </>
+            </span>
+          </div>
         )}
       </main>
     </>
@@ -80,7 +75,7 @@ function PostForm({ defaultValues, postRef, preview }) {
   };
 
   return (
-    <form className="" onSubmit={handleSubmit(updatePost)}>
+    <form onSubmit={handleSubmit(updatePost)}>
       {preview && (
         <div>
           <ReactMarkdown>{watch("content")}</ReactMarkdown>
@@ -102,16 +97,16 @@ function PostForm({ defaultValues, postRef, preview }) {
 
         {errors.content && <p className="font-bold text-red-500">{errors.content.message}</p>}
 
-        <fieldset className="mt-4">
+        <fieldset className="mt-2">
           <input className="mr-2" name="published" type="checkbox" {...register("published")} />{" "}
           {/* Error fixed with: https://stackoverflow.com/questions/66927051/getting-uncaught-typeerror-path-split-is-not-a-function-in-react */}
           <label>Published</label>
         </fieldset>
 
         <button
-          className="md mt-4 mb-16 rounded bg-green-500 px-4 py-2 font-bold text-white disabled:bg-green-600"
-          type="submit">
-          disabled={!isDirty || !isValid}
+          className="md my-2 rounded bg-green-500 px-4 py-2 font-bold text-white disabled:bg-green-600"
+          type="submit"
+          disabled={!isDirty || !isValid}>
           Save changes
         </button>
       </div>

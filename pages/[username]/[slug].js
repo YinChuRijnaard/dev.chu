@@ -49,13 +49,13 @@ export default function Post(props) {
   const post = realtimePost || props.post;
 
   return (
-    <main>
-      <section>
+    <main className="mx-32 mt-8 flex justify-between space-x-8">
+      <section className="w-3/4 rounded-md border-2 border-black p-4">
         <PostContent post={post} />
       </section>
 
-      <aside>
-        <p>{post.heartCount || 0} heart emoji</p>
+      <aside className="flex w-1/4 items-center justify-center rounded-md border-2 border-black p-4">
+        <p>{post.heartCount || 0} ❤️</p>
       </aside>
     </main>
   );
