@@ -20,6 +20,9 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 
 /*
+  TODO
+  * Style the app
+
   NOTES
   * This is the main entry point for any page in the application. It wraps all other 
   * Use it to: add UI components that are available on every page (e.g., a navbar or footer)
